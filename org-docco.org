@@ -1,4 +1,3 @@
-# -*- org-export-html-style-include-default:nil; org-export-html-final-hook:(#'org-docco-buffer) -*-
 #+Title: Org-Docco
 #+Author: Eric Schulte
 #+Style: <link rel="stylesheet" href="docco.css" type="text/css">
@@ -60,10 +59,7 @@ support this code moving forward.  /Caveat Emptor/
 
 ;;; Commentary:
 
-;; Docco (see http://jashkenas.github.com/docco/) generates HTML from
-;; JavaScript source code providing an attractive side-by-side display
-;; of source code and comments.  This file implements the same for
-;; Org-mode documents with code embedded in code blocks.
+;; <- look over there
 #+end_src
 
 The =cl= package provides all of the state-changing functions used
@@ -135,7 +131,7 @@ and code on the right side.  This function has two parts.
           (push (point-marker) transition-points)
           (goto-char (match-beginning 0))
           (setq pair (org-docco-balanced-re "<div" "</div>"))
-          (while (setq next (org-docco-balanced-re "<pre class\"src" "</pre>"))
+          (while (setq next (org-docco-balanced-re "<pre class=\"src" "</pre>"))
             (goto-char (cdr next))
             (push (car next) transition-points)
             (push (cdr next) transition-points))
@@ -157,12 +153,50 @@ and code on the right side.  This function has two parts.
             (error "leftover points")))))))
 #+end_src
 
-That's it.  To use this simply load this Emacs-lisp, and then add
-header lines like the following to the top of the Org-mode files which
-you want to doccoize during HTML export.
-: # -*- org-export-html-style-include-default:nil; org-export-html-final-hook:(#'org-docco-buffer) -*-
-: #+Style: <link rel="stylesheet" href="docco.css" type="text/css">
+We'll use Emacs [[http://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html][File Local Variables]] and the
+=org-export-html-final-hook= to control which buffers have
+=org-docco-buffer= run as part of their export process.
+#+begin_src emacs-lisp
+  (defvar org-docco-doccoize-me nil
+    "File local variable controlling if html export should be doccoized.")
+  (make-local-variable 'org-docco-doccoize-me)
+#+end_src
+
+A simple function will conditionally process HTML output based on the
+value of this variable.
+#+begin_src emacs-lisp
+  (defun org-docco-buffer-maybe ()
+    (when org-docco-doccoize-me (org-docco-buffer)))
+#+end_src
+
+Finally this function is added to the =org-export-html-final-hook=.
+#+begin_src emacs-lisp
+  (add-hook 'org-export-html-final-hook #'org-docco-buffer-maybe)
+#+end_src
+
+That's it.  To use this simply;
+1. Tangle =org-docco.el= out of this file by calling
+   =org-babel-tangle= or =C-c C-v t=.
+2. Load the resulting Emacs Lisp file.
+3. Add the following file local variable declaration to the bottom of
+   any Org-mode files which would be post-processed with
+   =org-docco-buffer=.
+   : # Local Variables:
+   : # org-export-html-style-include-default: nil
+   : # org-docco-doccoize-me: t
+   : # End:
+   And add the following style declaration to make use of the
+   =docco.css= style sheet taken directly from
+   https://github.com/jashkenas/docco.
+   : #+Style: <link rel="stylesheet" href="docco.css" type="text/css">
+
 #+begin_src emacs-lisp
 (provide 'org-docco)
 ;;; org-docco.el ends here
 #+end_src
+
+# Local Variables:
+# org-export-html-postamble: nil
+# org-export-html-style-include-default: nil
+# org-docco-doccoize-me: t
+# End:

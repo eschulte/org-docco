@@ -29,10 +29,7 @@
 
 ;;; Commentary:
 
-;; Docco (see http://jashkenas.github.com/docco/) generates HTML from
-;; JavaScript source code providing an attractive side-by-side display
-;; of source code and comments.  This file implements the same for
-;; Org-mode documents with code embedded in code blocks.
+;; <- look over there
 
 ;;; Code:
 (require 'cl)
@@ -74,7 +71,7 @@
           (push (point-marker) transition-points)
           (goto-char (match-beginning 0))
           (setq pair (org-docco-balanced-re "<div" "</div>"))
-          (while (setq next (org-docco-balanced-re "<pre class\"src" "</pre>"))
+          (while (setq next (org-docco-balanced-re "<pre class=\"src" "</pre>"))
             (goto-char (cdr next))
             (push (car next) transition-points)
             (push (cdr next) transition-points))
@@ -94,6 +91,15 @@
           (insert code-row-end table-end)
           (unless (null transition-points)
             (error "leftover points")))))))
+
+(defvar org-docco-doccoize-me nil
+  "File local variable controlling if html export should be doccoized.")
+(make-local-variable 'org-docco-doccoize-me)
+
+(defun org-docco-buffer-maybe ()
+  (when org-docco-doccoize-me (org-docco-buffer)))
+
+(add-hook 'org-export-html-final-hook #'org-docco-buffer-maybe)
 
 (provide 'org-docco)
 ;;; org-docco.el ends here
