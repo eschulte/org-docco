@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Org-Docco"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-04-13 17:44:49 EDT"/>
+<meta name="generated" content="2012-04-13 17:52:09 EDT"/>
 <meta name="author" content="Eric Schulte"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -50,8 +50,9 @@
 
 <p>The <code>docco</code> tool (see <a href="http://jashkenas.github.com/docco/">http://jashkenas.github.com/docco/</a>) generates
 HTML from JavaScript source code providing an attractive side-by-side
-display of source code and comments.  This file implements the same
-methodology for Org-mode documents with code embedded in code blocks.
+display of source code and comments.  This file (see
+<a href="http://github.com/eschulte/org-docco">http://github.com/eschulte/org-docco</a>) generates the same type of
+output from Org-mode documents with code embedded in code blocks.
 </p>
 <p>
 The way this works is an Org-mode document with embedded code blocks
@@ -294,6 +295,13 @@ Finally this function is added to the <code>org-export-html-final-hook</code>.
 <p>
 That's it.  To use this simply;
 </p><ol>
+<li>Checkout this file from <a href="https://github.com/eschulte/org-docco">https://github.com/eschulte/org-docco</a>,
+<pre class="example">
+git clone git://github.com/eschulte/org-docco.git
+</pre>
+
+<p>   and open it using Emacs.
+</p></li>
 <li>Tangle <code>org-docco.el</code> out of this file by calling
    <code>org-babel-tangle</code> or <code>C-c C-v t</code>.
 </li>
