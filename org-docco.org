@@ -5,8 +5,9 @@
 
 The =docco= tool (see http://jashkenas.github.com/docco/) generates
 HTML from JavaScript source code providing an attractive side-by-side
-display of source code and comments.  This file implements the same
-methodology for Org-mode documents with code embedded in code blocks.
+display of source code and comments.  This file (see
+http://github.com/eschulte/org-docco) generates the same type of
+output from Org-mode documents with code embedded in code blocks.
 
 The way this works is an Org-mode document with embedded code blocks
 is exported to html using the standard Org-mode export functions.
@@ -176,10 +177,13 @@ Finally this function is added to the =org-export-html-final-hook=.
 #+end_src
 
 That's it.  To use this simply;
-1. Tangle =org-docco.el= out of this file by calling
+1. Checkout this file from https://github.com/eschulte/org-docco,
+   : git clone git://github.com/eschulte/org-docco.git
+   and open it using Emacs.
+2. Tangle =org-docco.el= out of this file by calling
    =org-babel-tangle= or =C-c C-v t=.
-2. Load the resulting Emacs Lisp file.
-3. Add the following file local variable declaration to the bottom of
+3. Load the resulting Emacs Lisp file.
+4. Add the following file local variable declaration to the bottom of
    any Org-mode files which would be post-processed with
    =org-docco-buffer=.
    : # Local Variables:
