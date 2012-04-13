@@ -1,3 +1,4 @@
+
 ;;; org-docco.el --- docco type html generation from Org-mode
 
 ;; Copyright (C) 2012 Eric Schulte
@@ -73,7 +74,7 @@
           (push (point-marker) transition-points)
           (goto-char (match-beginning 0))
           (setq pair (org-docco-balanced-re "<div" "</div>"))
-          (while (setq next (org-docco-balanced-re "<pre class=\"src" "</pre>"))
+          (while (setq next (org-docco-balanced-re "<pre class\"src" "</pre>"))
             (goto-char (cdr next))
             (push (car next) transition-points)
             (push (cdr next) transition-points))
