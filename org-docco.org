@@ -29,7 +29,7 @@ sub-trees but I simply don't have the time to do so myself, and this
 version perfectly satisfies my own limit needs.  I make no promises to
 support this code moving forward.  /Caveat Emptor/
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :padline no
 ;;; org-docco.el --- docco type html generation from Org-mode
 
 ;; Copyright (C) 2012 Eric Schulte
