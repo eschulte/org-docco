@@ -5,8 +5,9 @@
 
 The =docco= tool (see http://jashkenas.github.com/docco/) generates
 HTML from JavaScript source code providing an attractive side-by-side
-display of source code and comments.  This file implements the same
-methodology for Org-mode documents with code embedded in code blocks.
+display of source code and comments.  This file (see [[http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/scripts/org-docco.org;hb=HEAD][org-docco.org]])
+generates the same type of output from Org-mode documents with code
+embedded in code blocks.
 
 The way this works is an Org-mode document with embedded code blocks
 is exported to html using the standard Org-mode export functions.
@@ -28,7 +29,7 @@ sub-trees but I simply don't have the time to do so myself, and this
 version perfectly satisfies my own limit needs.  I make no promises to
 support this code moving forward.  /Caveat Emptor/
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :padline no
 ;;; org-docco.el --- docco type html generation from Org-mode
 
 ;; Copyright (C) 2012 Eric Schulte
@@ -167,7 +168,10 @@ A simple function will conditionally process HTML output based on the
 value of this variable.
 #+begin_src emacs-lisp
   (defun org-docco-buffer-maybe ()
-    (when org-docco-doccoize-me (org-docco-buffer)))
+    (when (and (org-babel-exp-get-export-buffer)
+               (with-current-buffer (org-babel-exp-get-export-buffer)
+                 org-docco-doccoize-me))
+      (org-docco-buffer)))
 #+end_src
 
 Finally this function is added to the =org-export-html-final-hook=.
@@ -176,16 +180,18 @@ Finally this function is added to the =org-export-html-final-hook=.
 #+end_src
 
 That's it.  To use this simply;
-1. Tangle =org-docco.el= out of this file by calling
+1. Checkout this file from https://github.com/eschulte/org-docco,
+   : git clone git://github.com/eschulte/org-docco.git
+   and open it using Emacs.
+2. Tangle =org-docco.el= out of this file by calling
    =org-babel-tangle= or =C-c C-v t=.
-2. Load the resulting Emacs Lisp file.
-3. Add the following file local variable declaration to the bottom of
-   any Org-mode files which would be post-processed with
+3. Load the resulting Emacs Lisp file.
+4. Execute the following in any Org-mode buffer to add file local
+   variable declarations which will enable post-processed with
    =org-docco-buffer=.
-   : # Local Variables:
-   : # org-export-html-style-include-default: nil
-   : # org-docco-doccoize-me: t
-   : # End:
+   : (add-file-local-variable 'org-export-html-postamble nil)
+   : (add-file-local-variable 'org-export-html-style-include-default nil)
+   : (add-file-local-variable 'org-docco-doccoize-me t)
    And add the following style declaration to make use of the
    =docco.css= style sheet taken directly from
    https://github.com/jashkenas/docco.
