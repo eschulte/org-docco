@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Org-Docco"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-04-13 17:52:09 EDT"/>
+<meta name="generated" content="2012-04-20T12:17-0400"/>
 <meta name="author" content="Eric Schulte"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -50,9 +50,9 @@
 
 <p>The <code>docco</code> tool (see <a href="http://jashkenas.github.com/docco/">http://jashkenas.github.com/docco/</a>) generates
 HTML from JavaScript source code providing an attractive side-by-side
-display of source code and comments.  This file (see
-<a href="http://github.com/eschulte/org-docco">http://github.com/eschulte/org-docco</a>) generates the same type of
-output from Org-mode documents with code embedded in code blocks.
+display of source code and comments.  This file (see <a href="http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/scripts/org-docco.org;hb=HEAD">org-docco.org</a>)
+generates the same type of output from Org-mode documents with code
+embedded in code blocks.
 </p>
 <p>
 The way this works is an Org-mode document with embedded code blocks
@@ -82,37 +82,37 @@ support this code moving forward.  <i>Caveat Emptor</i>
 
 </th>
     <td class="code">
-<pre class="src src-emacs-lisp"><span style="color: #bc9458;">;;; </span><span style="color: #bc9458;">org-docco.el --- docco type html generation from Org-mode</span>
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;;; </span><span style="color: #b22222;">org-docco.el --- docco type html generation from Org-mode</span>
 
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">Copyright (C) 2012 Eric Schulte</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Copyright (C) 2012 Eric Schulte</span>
 
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">Author: Eric Schulte</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">Keywords: org-mode, literate programming, html</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">Homepage: http://orgmode.org/worg/org-contrib/org-mime.php</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">Version: 0.01</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Author: Eric Schulte</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Keywords: org-mode, literate programming, html</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Homepage: http://orgmode.org/worg/org-contrib/org-mime.php</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Version: 0.01</span>
 
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">This file is not part of GNU Emacs.</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">This file is not part of GNU Emacs.</span>
 
-<span style="color: #bc9458;">;;; </span><span style="color: #bc9458;">License:</span>
+<span style="color: #b22222;">;;; </span><span style="color: #b22222;">License:</span>
 
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">This program is free software; you can redistribute it and/or modify</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">it under the terms of the GNU General Public License as published by</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">the Free Software Foundation; either version 3, or (at your option)</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">any later version.</span>
-<span style="color: #bc9458;">;;</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">This program is distributed in the hope that it will be useful,</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">GNU General Public License for more details.</span>
-<span style="color: #bc9458;">;;</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">You should have received a copy of the GNU General Public License</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">along with GNU Emacs; see the file COPYING.  If not, write to the</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,</span>
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">Boston, MA 02110-1301, USA.</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">This program is free software; you can redistribute it and/or modify</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">it under the terms of the GNU General Public License as published by</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">the Free Software Foundation; either version 3, or (at your option)</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">any later version.</span>
+<span style="color: #b22222;">;;</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">This program is distributed in the hope that it will be useful,</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">GNU General Public License for more details.</span>
+<span style="color: #b22222;">;;</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">You should have received a copy of the GNU General Public License</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">along with GNU Emacs; see the file COPYING.  If not, write to the</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Boston, MA 02110-1301, USA.</span>
 
-<span style="color: #bc9458;">;;; </span><span style="color: #bc9458;">Commentary:</span>
+<span style="color: #b22222;">;;; </span><span style="color: #b22222;">Commentary:</span>
 
-<span style="color: #bc9458;">;; </span><span style="color: #bc9458;">&lt;- look over there</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&lt;- look over there</span>
 </pre></td></tr>
 <tr><th class="docs">
 
@@ -127,8 +127,8 @@ of <code>cl</code> may soon be permissible for use in official Emacs packages.
 
 </th>
     <td class="code">
-<pre class="src src-emacs-lisp"><span style="color: #bc9458;">;;; </span><span style="color: #bc9458;">Code:</span>
-<span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">require</span> '<span style="color: #6d9cbe;">cl</span><span style="color: #7f7f7f;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;;; </span><span style="color: #b22222;">Code:</span>
+<span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">cl</span><span style="color: #8c8c8c;">)</span>
 </pre></td></tr>
 <tr><th class="docs">
 
@@ -160,26 +160,26 @@ v    v       v v   v     v
 
 </th>
     <td class="code">
-<pre class="src src-emacs-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">defun</span> <span style="color: #ffc66d;">org-docco-balanced-re</span> <span style="color: #7f7f7f;">(</span>beg-re end-re<span style="color: #7f7f7f;">)</span>
-  <span style="color: #a5c261;">"Return the beginning and of a balanced regexp."</span>
-  <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">save-excursion</span>
-    <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">save-match-data</span>
-      <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">let</span> <span style="color: #7f7f7f;">((</span>both-re <span style="color: #7f7f7f;">(</span>concat <span style="color: #a5c261;">"</span><span style="color: #a5c261; font-weight: bold;">\\</span><span style="color: #a5c261; font-weight: bold;">(</span><span style="color: #a5c261;">"</span> beg-re <span style="color: #a5c261;">"</span><span style="color: #a5c261; font-weight: bold;">\\</span><span style="color: #a5c261; font-weight: bold;">|</span><span style="color: #a5c261;">"</span> end-re <span style="color: #a5c261;">"</span><span style="color: #a5c261; font-weight: bold;">\\</span><span style="color: #a5c261; font-weight: bold;">)</span><span style="color: #a5c261;">"</span><span style="color: #7f7f7f;">))</span>
-            <span style="color: #7f7f7f;">(</span>beg-count 0<span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>end-count 0<span style="color: #7f7f7f;">)</span>
-            beg end<span style="color: #7f7f7f;">)</span>
-        <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">when</span> <span style="color: #7f7f7f;">(</span>re-search-forward beg-re nil t<span style="color: #7f7f7f;">)</span>
-          <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>match-beginning 0<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>setq beg <span style="color: #7f7f7f;">(</span>point-marker<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>incf beg-count<span style="color: #7f7f7f;">)</span>
-          <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>match-end 0<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">while</span> <span style="color: #7f7f7f;">(</span>and <span style="color: #7f7f7f;">(</span>not end<span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>re-search-forward both-re nil t<span style="color: #7f7f7f;">))</span>
-            <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>match-beginning 0<span style="color: #7f7f7f;">))</span>
-            <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">cond</span> <span style="color: #7f7f7f;">((</span>looking-at beg-re<span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>incf beg-count<span style="color: #7f7f7f;">))</span>
-                  <span style="color: #7f7f7f;">((</span>looking-at end-re<span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>incf end-count<span style="color: #7f7f7f;">))</span>
-                  <span style="color: #7f7f7f;">(</span><span style="color: #d0d0ff;">:otherwise</span> <span style="color: #7f7f7f;">(</span><span style="color: #ffc0cb; font-weight: bold;">error</span> <span style="color: #a5c261;">"miss-matched"</span><span style="color: #7f7f7f;">)))</span>
-            <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>match-end 0<span style="color: #7f7f7f;">))</span>
-            <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">when</span> <span style="color: #7f7f7f;">(</span>= beg-count end-count<span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>setq end <span style="color: #7f7f7f;">(</span>point-marker<span style="color: #7f7f7f;">))))</span>
-          <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">when</span> end <span style="color: #7f7f7f;">(</span>cons beg end<span style="color: #7f7f7f;">)))))))</span>
+<pre class="src src-emacs-lisp"><span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">org-docco-balanced-re</span> <span style="color: #8c8c8c;">(</span>beg-re end-re<span style="color: #8c8c8c;">)</span>
+  <span style="color: #8b2252;">"Return the beginning and of a balanced regexp."</span>
+  <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">save-excursion</span>
+    <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">save-match-data</span>
+      <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">let</span> <span style="color: #8c8c8c;">((</span>both-re <span style="color: #8c8c8c;">(</span>concat <span style="color: #8b2252;">"</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">(</span><span style="color: #8b2252;">"</span> beg-re <span style="color: #8b2252;">"</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">"</span> end-re <span style="color: #8b2252;">"</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">)</span><span style="color: #8b2252;">"</span><span style="color: #8c8c8c;">))</span>
+            <span style="color: #8c8c8c;">(</span>beg-count 0<span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">(</span>end-count 0<span style="color: #8c8c8c;">)</span>
+            beg end<span style="color: #8c8c8c;">)</span>
+        <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">when</span> <span style="color: #8c8c8c;">(</span>re-search-forward beg-re nil t<span style="color: #8c8c8c;">)</span>
+          <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>match-beginning 0<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>setq beg <span style="color: #8c8c8c;">(</span>point-marker<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>incf beg-count<span style="color: #8c8c8c;">)</span>
+          <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>match-end 0<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">while</span> <span style="color: #8c8c8c;">(</span>and <span style="color: #8c8c8c;">(</span>not end<span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">(</span>re-search-forward both-re nil t<span style="color: #8c8c8c;">))</span>
+            <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>match-beginning 0<span style="color: #8c8c8c;">))</span>
+            <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">cond</span> <span style="color: #8c8c8c;">((</span>looking-at beg-re<span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">(</span>incf beg-count<span style="color: #8c8c8c;">))</span>
+                  <span style="color: #8c8c8c;">((</span>looking-at end-re<span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">(</span>incf end-count<span style="color: #8c8c8c;">))</span>
+                  <span style="color: #8c8c8c;">(</span><span style="color: #483d8b;">:otherwise</span> <span style="color: #8c8c8c;">(</span><span style="color: #ff0000; font-weight: bold;">error</span> <span style="color: #8b2252;">"miss-matched"</span><span style="color: #8c8c8c;">)))</span>
+            <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>match-end 0<span style="color: #8c8c8c;">))</span>
+            <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">when</span> <span style="color: #8c8c8c;">(</span>= beg-count end-count<span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">(</span>setq end <span style="color: #8c8c8c;">(</span>point-marker<span style="color: #8c8c8c;">))))</span>
+          <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">when</span> end <span style="color: #8c8c8c;">(</span>cons beg end<span style="color: #8c8c8c;">)))))))</span>
 </pre></td></tr>
 <tr><th class="docs">
 
@@ -206,42 +206,42 @@ and code on the right side.  This function has two parts.
 
 </th>
     <td class="code">
-<pre class="src src-emacs-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">defun</span> <span style="color: #ffc66d;">org-docco-buffer</span> <span style="color: #7f7f7f;">()</span>
-  <span style="color: #a5c261;">"Call from within an HTML buffer to doccoize it."</span>
-  <span style="color: #7f7f7f;">(</span>interactive<span style="color: #7f7f7f;">)</span>
-  <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">let</span> <span style="color: #7f7f7f;">((</span>table-start <span style="color: #a5c261;">"&lt;table&gt;\n"</span><span style="color: #7f7f7f;">)</span>
-        <span style="color: #7f7f7f;">(</span>doc-row-start  <span style="color: #a5c261;">"&lt;tr&gt;&lt;th class=\"docs\"&gt;\n"</span><span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>doc-row-end  <span style="color: #a5c261;">"&lt;/th&gt;\n"</span><span style="color: #7f7f7f;">)</span>
-        <span style="color: #7f7f7f;">(</span>code-row-start <span style="color: #a5c261;">"    &lt;td class=\"code\"&gt;\n"</span><span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>code-row-end <span style="color: #a5c261;">"&lt;/td&gt;&lt;/tr&gt;\n</span><span style="color: #a5c261; background-color: #cd69c9;">"</span><span style="color: #7f7f7f;">)</span>
-        <span style="color: #7f7f7f;">(</span>table-end <span style="color: #a5c261;">"&lt;/table&gt;"</span> <span style="color: #7f7f7f;">)</span>
-        pair transition-points next<span style="color: #7f7f7f;">)</span>
-    <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">save-excursion</span>
-      <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">save-match-data</span>
-        <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>point-min<span style="color: #7f7f7f;">))</span>
-        <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">when</span> <span style="color: #7f7f7f;">(</span>re-search-forward <span style="color: #a5c261;">"&lt;div id=\"content\"&gt;"</span> nil t<span style="color: #7f7f7f;">)</span>
-          <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>match-end 0<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>push <span style="color: #7f7f7f;">(</span>point-marker<span style="color: #7f7f7f;">)</span> transition-points<span style="color: #7f7f7f;">)</span>
-          <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>match-beginning 0<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>setq pair <span style="color: #7f7f7f;">(</span>org-docco-balanced-re <span style="color: #a5c261;">"&lt;div"</span> <span style="color: #a5c261;">"&lt;/div&gt;"</span><span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">while</span> <span style="color: #7f7f7f;">(</span>setq next <span style="color: #7f7f7f;">(</span>org-docco-balanced-re <span style="color: #a5c261;">"&lt;pre class=\"src"</span> <span style="color: #a5c261;">"&lt;/pre&gt;"</span><span style="color: #7f7f7f;">))</span>
-            <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>cdr next<span style="color: #7f7f7f;">))</span>
-            <span style="color: #7f7f7f;">(</span>push <span style="color: #7f7f7f;">(</span>car next<span style="color: #7f7f7f;">)</span> transition-points<span style="color: #7f7f7f;">)</span>
-            <span style="color: #7f7f7f;">(</span>push <span style="color: #7f7f7f;">(</span>cdr next<span style="color: #7f7f7f;">)</span> transition-points<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>cdr pair<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>push <span style="color: #7f7f7f;">(</span>and <span style="color: #7f7f7f;">(</span>re-search-backward <span style="color: #a5c261;">"&lt;/div&gt;"</span> nil t<span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>point-marker<span style="color: #7f7f7f;">))</span>
-                transition-points<span style="color: #7f7f7f;">)</span>
-          <span style="color: #bc9458;">;; </span><span style="color: #bc9458;">collected transitions, so build the table</span>
-          <span style="color: #7f7f7f;">(</span>setq transition-points <span style="color: #7f7f7f;">(</span>nreverse transition-points<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>pop transition-points<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>insert table-start doc-row-start<span style="color: #7f7f7f;">)</span>
-          <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">while</span> <span style="color: #7f7f7f;">(</span>&gt; <span style="color: #7f7f7f;">(</span>length transition-points<span style="color: #7f7f7f;">)</span> 1<span style="color: #7f7f7f;">)</span>
-            <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>pop transition-points<span style="color: #7f7f7f;">))</span>
-            <span style="color: #7f7f7f;">(</span>insert doc-row-end code-row-start<span style="color: #7f7f7f;">)</span>
-            <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>pop transition-points<span style="color: #7f7f7f;">))</span>
-            <span style="color: #7f7f7f;">(</span>insert code-row-end doc-row-start<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>goto-char <span style="color: #7f7f7f;">(</span>pop transition-points<span style="color: #7f7f7f;">))</span>
-          <span style="color: #7f7f7f;">(</span>insert code-row-end table-end<span style="color: #7f7f7f;">)</span>
-          <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">unless</span> <span style="color: #7f7f7f;">(</span>null transition-points<span style="color: #7f7f7f;">)</span>
-            <span style="color: #7f7f7f;">(</span><span style="color: #ffc0cb; font-weight: bold;">error</span> <span style="color: #a5c261;">"leftover points"</span><span style="color: #7f7f7f;">)))))))</span>
+<pre class="src src-emacs-lisp"><span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">org-docco-buffer</span> <span style="color: #8c8c8c;">()</span>
+  <span style="color: #8b2252;">"Call from within an HTML buffer to doccoize it."</span>
+  <span style="color: #8c8c8c;">(</span>interactive<span style="color: #8c8c8c;">)</span>
+  <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">let</span> <span style="color: #8c8c8c;">((</span>table-start <span style="color: #8b2252;">"&lt;table&gt;\n"</span><span style="color: #8c8c8c;">)</span>
+        <span style="color: #8c8c8c;">(</span>doc-row-start  <span style="color: #8b2252;">"&lt;tr&gt;&lt;th class=\"docs\"&gt;\n"</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">(</span>doc-row-end  <span style="color: #8b2252;">"&lt;/th&gt;\n"</span><span style="color: #8c8c8c;">)</span>
+        <span style="color: #8c8c8c;">(</span>code-row-start <span style="color: #8b2252;">"    &lt;td class=\"code\"&gt;\n"</span><span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">(</span>code-row-end <span style="color: #8b2252;">"&lt;/td&gt;&lt;/tr&gt;\n</span><span style="color: #8b2252; background-color: #cd69c9;">"</span><span style="color: #8c8c8c;">)</span>
+        <span style="color: #8c8c8c;">(</span>table-end <span style="color: #8b2252;">"&lt;/table&gt;"</span> <span style="color: #8c8c8c;">)</span>
+        pair transition-points next<span style="color: #8c8c8c;">)</span>
+    <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">save-excursion</span>
+      <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">save-match-data</span>
+        <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>point-min<span style="color: #8c8c8c;">))</span>
+        <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">when</span> <span style="color: #8c8c8c;">(</span>re-search-forward <span style="color: #8b2252;">"&lt;div id=\"content\"&gt;"</span> nil t<span style="color: #8c8c8c;">)</span>
+          <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>match-end 0<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>push <span style="color: #8c8c8c;">(</span>point-marker<span style="color: #8c8c8c;">)</span> transition-points<span style="color: #8c8c8c;">)</span>
+          <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>match-beginning 0<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>setq pair <span style="color: #8c8c8c;">(</span>org-docco-balanced-re <span style="color: #8b2252;">"&lt;div"</span> <span style="color: #8b2252;">"&lt;/div&gt;"</span><span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">while</span> <span style="color: #8c8c8c;">(</span>setq next <span style="color: #8c8c8c;">(</span>org-docco-balanced-re <span style="color: #8b2252;">"&lt;pre class=\"src"</span> <span style="color: #8b2252;">"&lt;/pre&gt;"</span><span style="color: #8c8c8c;">))</span>
+            <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>cdr next<span style="color: #8c8c8c;">))</span>
+            <span style="color: #8c8c8c;">(</span>push <span style="color: #8c8c8c;">(</span>car next<span style="color: #8c8c8c;">)</span> transition-points<span style="color: #8c8c8c;">)</span>
+            <span style="color: #8c8c8c;">(</span>push <span style="color: #8c8c8c;">(</span>cdr next<span style="color: #8c8c8c;">)</span> transition-points<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>cdr pair<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>push <span style="color: #8c8c8c;">(</span>and <span style="color: #8c8c8c;">(</span>re-search-backward <span style="color: #8b2252;">"&lt;/div&gt;"</span> nil t<span style="color: #8c8c8c;">)</span> <span style="color: #8c8c8c;">(</span>point-marker<span style="color: #8c8c8c;">))</span>
+                transition-points<span style="color: #8c8c8c;">)</span>
+          <span style="color: #b22222;">;; </span><span style="color: #b22222;">collected transitions, so build the table</span>
+          <span style="color: #8c8c8c;">(</span>setq transition-points <span style="color: #8c8c8c;">(</span>nreverse transition-points<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>pop transition-points<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>insert table-start doc-row-start<span style="color: #8c8c8c;">)</span>
+          <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">while</span> <span style="color: #8c8c8c;">(</span>&gt; <span style="color: #8c8c8c;">(</span>length transition-points<span style="color: #8c8c8c;">)</span> 1<span style="color: #8c8c8c;">)</span>
+            <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>pop transition-points<span style="color: #8c8c8c;">))</span>
+            <span style="color: #8c8c8c;">(</span>insert doc-row-end code-row-start<span style="color: #8c8c8c;">)</span>
+            <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>pop transition-points<span style="color: #8c8c8c;">))</span>
+            <span style="color: #8c8c8c;">(</span>insert code-row-end doc-row-start<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>goto-char <span style="color: #8c8c8c;">(</span>pop transition-points<span style="color: #8c8c8c;">))</span>
+          <span style="color: #8c8c8c;">(</span>insert code-row-end table-end<span style="color: #8c8c8c;">)</span>
+          <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">unless</span> <span style="color: #8c8c8c;">(</span>null transition-points<span style="color: #8c8c8c;">)</span>
+            <span style="color: #8c8c8c;">(</span><span style="color: #ff0000; font-weight: bold;">error</span> <span style="color: #8b2252;">"leftover points"</span><span style="color: #8c8c8c;">)))))))</span>
 </pre></td></tr>
 <tr><th class="docs">
 
@@ -256,9 +256,9 @@ We'll use Emacs <a href="http://www.gnu.org/software/emacs/manual/html_node/emac
 
 </th>
     <td class="code">
-<pre class="src src-emacs-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">defvar</span> <span style="color: #b0c4de;">org-docco-doccoize-me</span> nil
-  <span style="color: #a5c261;">"File local variable controlling if html export should be doccoized."</span><span style="color: #7f7f7f;">)</span>
-<span style="color: #7f7f7f;">(</span>make-local-variable 'org-docco-doccoize-me<span style="color: #7f7f7f;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">org-docco-doccoize-me</span> nil
+  <span style="color: #8b2252;">"File local variable controlling if html export should be doccoized."</span><span style="color: #8c8c8c;">)</span>
+<span style="color: #8c8c8c;">(</span>make-local-variable 'org-docco-doccoize-me<span style="color: #8c8c8c;">)</span>
 </pre></td></tr>
 <tr><th class="docs">
 
@@ -272,8 +272,8 @@ value of this variable.
 
 </th>
     <td class="code">
-<pre class="src src-emacs-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">defun</span> <span style="color: #ffc66d;">org-docco-buffer-maybe</span> <span style="color: #7f7f7f;">()</span>
-  <span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">when</span> org-docco-doccoize-me <span style="color: #7f7f7f;">(</span>org-docco-buffer<span style="color: #7f7f7f;">)))</span>
+<pre class="src src-emacs-lisp"><span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">org-docco-buffer-maybe</span> <span style="color: #8c8c8c;">()</span>
+  <span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">when</span> org-docco-doccoize-me <span style="color: #8c8c8c;">(</span>org-docco-buffer<span style="color: #8c8c8c;">)))</span>
 </pre></td></tr>
 <tr><th class="docs">
 
@@ -286,7 +286,7 @@ Finally this function is added to the <code>org-export-html-final-hook</code>.
 
 </th>
     <td class="code">
-<pre class="src src-emacs-lisp"><span style="color: #7f7f7f;">(</span>add-hook 'org-export-html-final-hook #'org-docco-buffer-maybe<span style="color: #7f7f7f;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #8c8c8c;">(</span>add-hook 'org-export-html-final-hook #'org-docco-buffer-maybe<span style="color: #8c8c8c;">)</span>
 </pre></td></tr>
 <tr><th class="docs">
 
@@ -307,14 +307,13 @@ git clone git://github.com/eschulte/org-docco.git
 </li>
 <li>Load the resulting Emacs Lisp file.
 </li>
-<li>Add the following file local variable declaration to the bottom of
-   any Org-mode files which would be post-processed with
+<li>Execute the following in any Org-mode buffer to add file local
+   variable declarations which will enable post-processed with
    <code>org-docco-buffer</code>.
 <pre class="example">
-# Local Variables:
-# org-export-html-style-include-default: nil
-# org-docco-doccoize-me: t
-# End:
+(add-file-local-variable 'org-export-html-postamble nil)
+(add-file-local-variable 'org-export-html-style-include-default nil)
+(add-file-local-variable 'org-docco-doccoize-me t)
 </pre>
 
 <p>   And add the following style declaration to make use of the
@@ -333,8 +332,8 @@ git clone git://github.com/eschulte/org-docco.git
 
 </th>
     <td class="code">
-<pre class="src src-emacs-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #cc7833;">provide</span> '<span style="color: #6d9cbe;">org-docco</span><span style="color: #7f7f7f;">)</span>
-<span style="color: #bc9458;">;;; </span><span style="color: #bc9458;">org-docco.el ends here</span>
+<pre class="src src-emacs-lisp"><span style="color: #8c8c8c;">(</span><span style="color: #a020f0;">provide</span> '<span style="color: #008b8b;">org-docco</span><span style="color: #8c8c8c;">)</span>
+<span style="color: #b22222;">;;; </span><span style="color: #b22222;">org-docco.el ends here</span>
 </pre></td></tr>
 <tr><th class="docs">
 
